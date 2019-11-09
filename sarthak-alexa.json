@@ -1,0 +1,396 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "the yoda",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "HelloWorldIntent",
+                    "slots": [],
+                    "samples": [
+                        "hello",
+                        "how are you",
+                        "say hi world",
+                        "say hi",
+                        "hi",
+                        "say hello world",
+                        "say hello"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "getInoutIntent",
+                    "slots": [
+                        {
+                            "name": "user",
+                            "type": "desco_users"
+                        }
+                    ],
+                    "samples": [
+                        "inout status of {user}",
+                        "tell me inout status of {user}",
+                        "is {user} in office"
+                    ]
+                },
+                {
+                    "name": "setInoutIntent",
+                    "slots": [
+                        {
+                            "name": "user",
+                            "type": "desco_users",
+                            "samples": [
+                                "{user}"
+                            ]
+                        },
+                        {
+                            "name": "time",
+                            "type": "AMAZON.TIME",
+                            "samples": [
+                                "at {time}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "set inout status",
+                        "set inout status of {user} to {time}"
+                    ]
+                },
+                {
+                    "name": "GetHotlineNumbers",
+                    "slots": [
+                        {
+                            "name": "hotline_station",
+                            "type": "HOTLINE_STATIONS",
+                            "samples": [
+                                "for {hotline_station}",
+                                "{hotline_station} "
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "what is the number for {hotline_station}",
+                        "can you tell me number for {hotline_station}"
+                    ]
+                },
+                {
+                    "name": "getConferenceRoom",
+                    "slots": [
+                        {
+                            "name": "FLOOR_NO",
+                            "type": "FLOOR_NO",
+                            "samples": [
+                                "on {FLOOR_NO} floor",
+                                "on floor {FLOOR_NO}",
+                                "{FLOOR_NO}",
+                                "floor {FLOOR_NO}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "any conference room free currently",
+                        "on  {FLOOR_NO} floor is there any conference available",
+                        "any conference room available on  {FLOOR_NO} floor",
+                        "is there any conference room available "
+                    ]
+                },
+                {
+                    "name": "getConferenceRoomTImeSlots",
+                    "slots": [],
+                    "samples": [
+                        "ya",
+                        "sure",
+                        "yes please",
+                        "yes"
+                    ]
+                },
+                {
+                    "name": "SetConferenceRoom",
+                    "slots": [
+                        {
+                            "name": "CONFERENCE_ROOM",
+                            "type": "CONFERENCE_ROOMS"
+                        }
+                    ],
+                    "samples": [
+                        "please book {CONFERENCE_ROOM}",
+                        "book {CONFERENCE_ROOM}",
+                        "yes book {CONFERENCE_ROOM}",
+                        "{CONFERENCE_ROOM} ",
+                        "for {CONFERENCE_ROOM} "
+                    ]
+                },
+                {
+                    "name": "BookConferenceRoom",
+                    "slots": [
+                        {
+                            "name": "TIME_SLOT",
+                            "type": "AMAZON.TIME"
+                        }
+                    ],
+                    "samples": [
+                        "yes book for {TIME_SLOT}",
+                        "book for {TIME_SLOT}",
+                        "please book from {TIME_SLOT}"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "desco_users",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "mohite"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "sarthak "
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "naresh"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "HOTLINE_STATIONS",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "payroll"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "security"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "admin"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "courier room"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "CONFERENCE_ROOMS",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "Versivius"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "ediza"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "rainer"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "FLOOR_NO",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "fourth"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "third"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "second"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "first"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "getInoutIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "user",
+                            "type": "desco_users",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.553485481812.84284478968"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "setInoutIntent",
+                    "delegationStrategy": "ALWAYS",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "user",
+                            "type": "desco_users",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.113927999166.1272939005003"
+                            }
+                        },
+                        {
+                            "name": "time",
+                            "type": "AMAZON.TIME",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.113927999166.38175552445"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "GetHotlineNumbers",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "hotline_station",
+                            "type": "HOTLINE_STATIONS",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1375031451681.1474697574742"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "getConferenceRoom",
+                    "delegationStrategy": "ALWAYS",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "FLOOR_NO",
+                            "type": "FLOOR_NO",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.652116350898.1560774683786"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "SetConferenceRoom",
+                    "delegationStrategy": "ALWAYS",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "CONFERENCE_ROOM",
+                            "type": "CONFERENCE_ROOMS",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        }
+                    ]
+                }
+            ],
+            "delegationStrategy": "ALWAYS"
+        },
+        "prompts": [
+            {
+                "id": "Elicit.Slot.113927999166.1272939005003",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "For which user?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.113927999166.38175552445",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "At what time"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Slot.113927999166.38175552445",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Are you are sure you want to book cab at {time} ?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.553485481812.84284478968",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "for which user"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1375031451681.1474697574742",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "for which place do you need the number of"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.652116350898.1560774683786",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "on which floor"
+                    }
+                ]
+            }
+        ]
+    }
+}
