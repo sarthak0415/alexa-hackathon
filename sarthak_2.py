@@ -25,6 +25,13 @@ current_ops = {
         "phone": 74431
     },
 }
+circuit_facts = [
+    "The last day to submit to tax documents is 5th december.",
+    "Deadline to fill PAS is 12 Nov",
+    "Samuria's are currently leading in Clash",
+    "Pycon is happening in hyderabad this year."
+]
+
 
 class LunchMenuIntentHandler(AbstractRequestHandler):
     """Handler for Hello World Intent."""
@@ -79,6 +86,24 @@ class CurrentOpsPersonHandler(AbstractRequestHandler):
         speak_output = "%s is currently on ops for %s team, he sits at %s desk number and his phone number is %s" %(
             current_ops[team]["name"], team, current_ops[team]["desk"], current_ops[team]["phone"]
         )
+
+        return (
+            handler_input.response_builder
+                .speak(speak_output)
+                # .ask("add a reprompt if you want to keep the session open for the user to respond")
+                .response
+        )
+
+class SearchCircuitIntentHandler(AbstractRequestHandler):
+    """Handler for Hello World Intent."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return ask_utils.is_intent_name("SearchCircuitIntent")(handler_input)
+
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        circuit_keyword = get_slot_value(handler_input, 'CIRCUIT_KEYWORDS').lower()
+        speak_output = [f for f in circuit_facts if circuit_keyword.lower() in f.lower()][0]
 
         return (
             handler_input.response_builder
@@ -177,6 +202,21 @@ class HelpIntentHandler(AbstractRequestHandler):
                         "who is the current ops person",
                         "who is the current ops person for {team} team"
                     ]
+                },
+                {
+                    "name": "SearchCircuitIntent",
+                    "slots": [
+                        {
+                            "name": "CIRCUIT_KEYWORDS",
+                            "type": "CIRCUIT_KEYWORDS",
+                            "samples": [
+                                "{CIRCUIT_KEYWORDS}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "Can you search circuit for {CIRCUIT_KEYWORDS}"
+                    ]
                 }
             ],
             "types": [
@@ -264,6 +304,31 @@ class HelpIntentHandler(AbstractRequestHandler):
                             }
                         }
                     ]
+                },
+                {
+                    "name": "CIRCUIT_KEYWORDS",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "pycon"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "clash"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "tax"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "pas"
+                            }
+                        }
+                    ]
                 }
             ]
         },
@@ -305,6 +370,22 @@ class HelpIntentHandler(AbstractRequestHandler):
                             }
                         }
                     ]
+                },
+                {
+                    "name": "SearchCircuitIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "CIRCUIT_KEYWORDS",
+                            "type": "CIRCUIT_KEYWORDS",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.192645000937.262599424253"
+                            }
+                        }
+                    ]
                 }
             ],
             "delegationStrategy": "ALWAYS"
@@ -325,6 +406,15 @@ class HelpIntentHandler(AbstractRequestHandler):
                     {
                         "type": "PlainText",
                         "value": "for which team"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.192645000937.262599424253",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "for which information you want to search circuit"
                     }
                 ]
             }
