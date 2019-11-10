@@ -87,6 +87,22 @@ class CurrentOpsPersonHandler(AbstractRequestHandler):
                 .response
         )
 
+class HelpIntentHandler(AbstractRequestHandler):
+    """Handler for Help Intent."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return ask_utils.is_intent_name("AMAZON.HelpIntent")(handler_input)
+
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        speak_output = "Hey, I can help you with batch failures, ops contacts, inout statuses, book conference rooms, events and cabs. I can also search public information on circuit for you."
+
+        return (
+            handler_input.response_builder
+                .speak(speak_output)
+                .ask(speak_output)
+                .response
+        )
 
 
 {
@@ -100,7 +116,13 @@ class CurrentOpsPersonHandler(AbstractRequestHandler):
                 },
                 {
                     "name": "AMAZON.HelpIntent",
-                    "samples": []
+                    "samples": [
+                        "What do you do",
+                        "How can you help",
+                        "what can you do ",
+                        "What all can you do",
+                        "help"
+                    ]
                 },
                 {
                     "name": "AMAZON.StopIntent",
